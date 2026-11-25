@@ -1,9 +1,19 @@
 # task-board
 
-タスクボードアプリ（初期段階。ソースコードはまだ無い）。
+React + Vite（JavaScript）製のタスクボードアプリ。タスクの追加・完了切替・削除ができる。
 
-<!-- 技術スタックが決まったら、以下を実際に動作確認したうえで追記する:
-     コマンド（dev / build / test / テスト単体 / lint / typecheck）、アーキテクチャ、規約、注意 -->
+## コマンド
+
+- 開発サーバー: `npm run dev`（http://localhost:5173）
+- ビルド: `npm run build`（出力先 `dist/`。生成物なので編集しない）
+- テスト・Lint・型チェックは未導入。
+
+## アーキテクチャ
+
+- タスク一覧の状態は [src/App.jsx](src/App.jsx) の `useState` で一元管理し、子コンポーネントへはコールバックで渡す。
+- 永続化はしていない（リロードで消える）。
+- タスク ID は `crypto.randomUUID()`。安全なコンテキスト（localhost / HTTPS）でのみ動くため、LAN 内の別端末から http で開くと追加時に落ちる。
+- スタイルは [src/App.css](src/App.css) の素の CSS 1 ファイル。
 
 ## 言語
 
