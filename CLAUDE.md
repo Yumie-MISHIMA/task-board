@@ -11,7 +11,7 @@ React + Vite（JavaScript）製のタスクボードアプリ。タスクの追�
 ## アーキテクチャ
 
 - タスク一覧の状態は [src/App.jsx](src/App.jsx) の `useState` で一元管理し、子コンポーネントへはコールバックで渡す。
-- 永続化はしていない（リロードで消える）。
+- タスクは localStorage（キー `task-board:tasks`）に保存する。読み書きは [src/taskStorage.js](src/taskStorage.js) に集約し、読み込み時は形の不正な要素を捨てる。
 - タスク ID は `crypto.randomUUID()`。安全なコンテキスト（localhost / HTTPS）でのみ動くため、LAN 内の別端末から http で開くと追加時に落ちる。
 - スタイルは [src/App.css](src/App.css) の素の CSS 1 ファイル。
 

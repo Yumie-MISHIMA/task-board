@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskForm from './components/TaskForm.jsx';
 import TaskItem from './components/TaskItem.jsx';
+import { loadTasks, saveTasks } from './taskStorage.js';
 
 export default function App() {
-  // タスク一覧の状態はここで一元管理する（永続化はしない）
-  const [tasks, setTasks] = useState([]);
+  // タスク一覧の状態はここで一元管理し、初回だけ localStorage から復元する
+  const [tasks, setTasks] = useState(loadTasks);
+
+  // タスクが変わるたびに localStorage へ保存する
+  useEffect(() => {
+    saveTasks(tasks);
+  }, [tasks]);
 
   const addTask = (title) => {
     setTasks((prev) => [
