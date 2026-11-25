@@ -2,3 +2,12 @@
 .env
 .env.*
 !.env.example
+
+# 依存・ビルド成果物
+node_modules/
+dist/
+
+# 鍵ファイル・ログ
+*.pem
+*.key
+*.log
