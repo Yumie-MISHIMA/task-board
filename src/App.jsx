@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import TaskForm from './components/TaskForm.jsx';
 import TaskItem from './components/TaskItem.jsx';
+import useStoredTasks from './useStoredTasks.js';
 
 export default function App() {
-  // タスク一覧の状態はここで一元管理する（永続化はしない）
-  const [tasks, setTasks] = useState([]);
+  // タスク一覧の状態はここで一元管理する（localStorage と同期）
+  const [tasks, setTasks] = useStoredTasks();
 
   const addTask = (title) => {
     setTasks((prev) => [
